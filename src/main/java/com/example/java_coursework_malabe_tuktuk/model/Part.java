@@ -24,4 +24,32 @@ public class Part {
         this.threshold = threshold;
         this.imagePath = imagePath;
     }
+
+    public String getPartCode(){
+        return partCode;
+    }
+    public String getName(){
+        return name;
+    }
+    public String getBrand(){
+        return brand;
+    }
+    public String getCategory(){
+        return category;
+    }
+    public double getPrice(){
+        return price;
+    }
+    public int getQuantity(){
+        return quantity;
+    }
+    public LocalDate getAddDate(){
+        return addDate;
+    }
+    public int getThreshold(){
+        return threshold;
+    }
+    public String getImagePath(){
+        return imagePath;
+    }
 }
