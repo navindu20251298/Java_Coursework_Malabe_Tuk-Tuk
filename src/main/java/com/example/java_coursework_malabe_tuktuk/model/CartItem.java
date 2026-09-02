@@ -8,4 +8,11 @@ public class CartItem {
         this.part = part;
         this.quantity = quantity;
     }
+
+    public Part getPart() {
+        return part;
+    }
+    public int getQuantity() {
+        return quantity;
+    }
 }
