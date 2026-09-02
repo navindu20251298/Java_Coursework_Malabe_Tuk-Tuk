@@ -20,4 +20,8 @@ public class CartItem {
         this.quantity = quantity;
     }
 
+    public double getLineTotal() {
+        return part.getPrice() * quantity;
+    }
+
 }
