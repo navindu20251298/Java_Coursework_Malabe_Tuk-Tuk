@@ -9,4 +9,12 @@ public class Transaction {
     private double discountApplied;
     private double total;
     private LocalDateTime timestamp;
+
+    public Transaction(List<CartItem> items, double subtotal, double discountApplied, double total) {
+        this.items = items;
+        this.subtotal = subtotal;
+        this.discountApplied = discountApplied;
+        this.total = total;
+        this.timestamp = LocalDateTime.now();
+    )
 }
