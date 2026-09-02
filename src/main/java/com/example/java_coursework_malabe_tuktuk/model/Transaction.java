@@ -16,5 +16,5 @@ public class Transaction {
         this.discountApplied = discountApplied;
         this.total = total;
         this.timestamp = LocalDateTime.now();
-    )
+    }
 }
