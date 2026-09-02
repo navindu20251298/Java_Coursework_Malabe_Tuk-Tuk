@@ -17,4 +17,20 @@ public class Transaction {
         this.total = total;
         this.timestamp = LocalDateTime.now();
     }
+
+    public List<CartItem> getItems() {
+        return items;
+    }
+    public double getSubtotal() {
+        return subtotal;
+    }
+    public double getDiscountApplied() {
+        return discountApplied;
+    }
+    public double getTotal() {
+        return total;
+    }
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
 }
