@@ -5,4 +5,11 @@ public class Dealer {
     private String name;
     private String contact;
     private String location;
+
+    public Dealer(String dealerId, String name, String contact, String location) {
+        this.dealerId = dealerId;
+        this.name = name;
+        this.contact = contact;
+        this.location = location;
+    }
 }
