@@ -24,3 +24,11 @@ public class CheckoutService {
             }
         }
     }
+
+    public double calculateSubtotal(List<CartItem> cart) {
+        double subtotal = 0;
+        for (CartItem item : cart) {
+            subtotal += item.getLineTotal();
+        }
+        return subtotal;
+    }
