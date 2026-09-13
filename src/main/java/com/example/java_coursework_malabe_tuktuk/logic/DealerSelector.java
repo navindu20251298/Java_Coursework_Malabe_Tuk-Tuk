@@ -33,3 +33,20 @@ public class DealerSelector {
         sortByLocation(selected);
         return selected;
     }
+
+    private void sortByLocation(List<Dealer> dealers) {
+        int n = dealers.size();
+
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - 1 - i; j++) {
+                Dealer a = dealers.get(j);
+                Dealer b = dealers.get(j + 1);
+
+                if (a.getLocation().compareToIgnoreCase(b.getLocation()) > 0) {
+                    dealers.set(j, b);
+                    dealers.set(j + 1, a);
+                }
+            }
+        }
+    }
+}
