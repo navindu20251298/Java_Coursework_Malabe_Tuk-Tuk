@@ -69,3 +69,16 @@ public class CheckoutService {
             part.setQuantity(part.getQuantity() - item.getQuantity());
         }
     }
+
+    public Transaction checkout(List<CartItem> cart) {
+        validateCart(cart);
+
+        double subtotal = calculateSubtotal(cart);
+        double discount = calculateDiscount(cart);
+        double total = subtotal - discount;
+
+        deductStock(cart);
+
+        return new Transaction(cart, subtotal, discount, total);
+    }
+}
