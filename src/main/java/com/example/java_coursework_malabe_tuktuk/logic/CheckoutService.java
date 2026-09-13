@@ -62,3 +62,10 @@ public class CheckoutService {
 
         return totalDiscount;
     }
+
+    public void deductStock(List<CartItem> cart) {
+        for (CartItem item : cart) {
+            Part part = item.getPart();
+            part.setQuantity(part.getQuantity() - item.getQuantity());
+        }
+    }
