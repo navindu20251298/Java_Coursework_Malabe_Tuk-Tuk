@@ -39,3 +39,14 @@ public class InventoryManager {
         }
         parts.remove(toRemove);
     }
+
+    public void updatePart(List<Part> parts, Part updatedPart) throws IllegalArgumentException {
+        for (int i = 0; i < parts.size(); i++) {
+            if (parts.get(i).getPartCode().equalsIgnoreCase(updatedPart.getPartCode())) {
+                parts.set(i, updatedPart);
+                return;
+            }
+        }
+        throw new IllegalArgumentException("Part not found for update.");
+    }
+}
