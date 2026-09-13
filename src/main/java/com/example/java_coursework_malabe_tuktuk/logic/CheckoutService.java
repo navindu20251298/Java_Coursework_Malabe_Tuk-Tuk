@@ -32,3 +32,33 @@ public class CheckoutService {
         }
         return subtotal;
     }
+
+    public double calculateDiscount(List<CartItem> cart) {
+
+        double totalDiscount = 0;
+        boolean hasEngine = false;
+        boolean hasElectrical = false;
+
+        for (CartItem item : cart) {
+            if (item.getQuantity() >= 3) {
+                double itemDiscount = item.getLineTotal() * 0.05;
+                totalDiscount += itemDiscount;
+            }
+
+            String category = item.getPart().getCategory();
+            if (category.equalsIgnoreCase("engine")) {
+                hasEngine = true;
+            }
+            if (category.equalsIgnoreCase("electrical")) {
+                hasElectrical = true;
+            }
+        }
+
+        if (hasEngine && hasElectrical) {
+            double subtotalAfterBulk = calculateSubtotal(cart) - totalDiscount;
+            double synergyDiscount = subtotalAfterBulk * 0.10;
+            totalDiscount += synergyDiscount;
+        }
+
+        return totalDiscount;
+    }
