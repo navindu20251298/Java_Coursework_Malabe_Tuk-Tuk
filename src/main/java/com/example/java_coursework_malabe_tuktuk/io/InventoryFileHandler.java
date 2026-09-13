@@ -27,3 +27,19 @@ public class InventoryFileHandler {
 
         return parts;
     }
+
+    public void saveInventory(String filePath, List<Part> parts) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
+
+            for (Part p : parts) {
+                String line = p.getPartCode() + "," + p.getName() + "," + p.getBrand() + ","
+                        + p.getCategory() + "," + p.getPrice() + "," + p.getQuantity() + ","
+                        + p.getAddDate() + "," + p.getThreshold() + "," + p.getImagePath();
+                writer.println(line);
+            }
+
+        } catch (IOException e) {
+            System.out.println("Could not save inventory file: " + e.getMessage());
+        }
+    }
+}
