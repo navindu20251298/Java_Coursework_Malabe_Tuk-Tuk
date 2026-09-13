@@ -1,16 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.java_coursework_malabe_tuktuk.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<TabPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+         fx:controller="com.example.java_coursework_malabe_tuktuk.controller.InventoryController"
+         tabClosingPolicy="UNAVAILABLE">
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+    <Tab text="Inventory">
+        <VBox spacing="10" style="-fx-padding: 10;">
+
+            <Label fx:id="lowStockLabel" text="Low stock items will appear here" style="-fx-text-fill: red;" />
+
+            <HBox spacing="8">
+                <TextField fx:id="keywordField" promptText="Search by name or code..." />
+                <ComboBox fx:id="categoryFilter" promptText="All Categories" />
+                <TextField fx:id="minPriceField" promptText="Min Price" />
+                <TextField fx:id="maxPriceField" promptText="Max Price" />
+                <Button text="Search" fx:id="searchButton" onAction="#onSearch" />
+                <Button text="Reset" fx:id="resetButton" onAction="#onReset" />
+            </HBox>
+
+            <TableView fx:id="partTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="codeCol" text="Code" />
+                    <TableColumn fx:id="nameCol" text="Name" />
+                    <TableColumn fx:id="brandCol" text="Brand" />
+                    <TableColumn fx:id="priceCol" text="Price" />
+                    <TableColumn fx:id="qtyCol" text="Qty" />
+                    <TableColumn fx:id="categoryCol" text="Category" />
+                    <TableColumn fx:id="dateCol" text="Date Added" />
+                    <TableColumn fx:id="imageCol" text="Images" prefWidth="80" />
+                    <TableColumn fx:id="thresholdCol" text="Threshold" />
+                </columns>
+            </TableView>
+
+            <HBox spacing="10">
+                <Label fx:id="totalPartsLabel" text="Total Parts: 0" />
+                <Label fx:id="totalValueLabel" text="Total Value: Rs. 0.00" />
+            </HBox>
+
+            <HBox spacing="8">
+                <TextField fx:id="codeInput" promptText="Part Code" />
+                <TextField fx:id="nameInput" promptText="Name" />
+                <TextField fx:id="brandInput" promptText="Brand" />
+                <TextField fx:id="categoryInput" promptText="Category" />
+                <TextField fx:id="priceInput" promptText="Price" />
+                <TextField fx:id="qtyInput" promptText="Quantity" />
+                <TextField fx:id="thresholdInput" promptText="Threshold" />
+            </HBox>
+
+            <HBox spacing="10">
+                <Region HBox.hgrow="ALWAYS" />
+                <Button text="Add Part" fx:id="addButton" onAction="#onAddPart" />
+                <Button text="Edit Part" fx:id="editButton" onAction="#onEditPart" />
+                <Button text="Delete Part" fx:id="deleteButton" onAction="#onDeletePart" />
+            </HBox>
+
+        </VBox>
+    </Tab>
+
+    <Tab text="Dealers">
+        <VBox spacing="10" style="-fx-padding: 10;" fx:id="dealerTabRoot">
+            <Label text="Randomly Selected Dealers (sorted by location)" style="-fx-font-weight: bold;" />
+
+            <TableView fx:id="dealerTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="dealerIdCol" text="Dealer ID" />
+                    <TableColumn fx:id="dealerNameCol" text="Name" />
+                    <TableColumn fx:id="dealerLocationCol" text="Location" />
+                    <TableColumn fx:id="dealerContactCol" text="Contact" />
+                </columns>
+            </TableView>
+
+            <Button text="Refresh Dealers" onAction="#onRefreshDealers" />
+
+        </VBox>
+    </Tab>
+
+    <Tab text="Point of Sale">
+        <VBox spacing="10" style="-fx-padding: 10;">
+            <Label text="Available Parts" style="-fx-font-weight: bold;" />
+            <TableView fx:id="posPartTable" prefHeight="200">
+                <columns>
+                    <TableColumn fx:id="posCodeCol" text="Code" />
+                    <TableColumn fx:id="posNameCol" text="Name" />
+                    <TableColumn fx:id="posCategoryCol" text="Category" />
+                    <TableColumn fx:id="posPriceCol" text="Price" />
+                    <TableColumn fx:id="posStockCol" text="In Stock" />
+                </columns>
+            </TableView>
+
+            <HBox spacing="8">
+                <TextField fx:id="cartQtyField" promptText="Quantity" />
+                <Button text="Add to Cart" onAction="#onAddToCart" />
+            </HBox>
+
+            <Label text="Cart" style="-fx-font-weight: bold;" />
+            <TableView fx:id="cartTable" prefHeight="150">
+                <columns>
+                    <TableColumn fx:id="cartCodeCol" text="Code" />
+                    <TableColumn fx:id="cartNameCol" text="Name" />
+                    <TableColumn fx:id="cartQtyCol" text="Qty" />
+                    <TableColumn fx:id="cartLineTotalCol" text="Line Total" />
+                </columns>
+            </TableView>
+
+            <HBox spacing="10">
+                <Label fx:id="cartSubtotalLabel" text="Subtotal: Rs. 0.00" />
+                <Label fx:id="cartDiscountLabel" text="Discount: Rs. 0.00" />
+                <Label fx:id="cartTotalLabel" text="Total: Rs. 0.00" />
+            </HBox>
+
+            <HBox spacing="10">
+                <Button text="Remove Selected" onAction="#onRemoveFromCart" />
+                <Button text="Clear Cart" onAction="#onClearCart" />
+                <Button text="Checkout" onAction="#onCheckout" style="-fx-font-weight: bold;" />
+            </HBox>
+        </VBox>
+    </Tab>
+
+</TabPane>
