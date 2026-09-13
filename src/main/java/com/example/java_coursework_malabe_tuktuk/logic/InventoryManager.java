@@ -25,3 +25,17 @@ public class InventoryManager {
 
         parts.add(newPart);
     }
+
+    public void deletePart(List<Part> parts, String partCode) throws IllegalArgumentException {
+        Part toRemove = null;
+        for (Part p : parts) {
+            if (p.getPartCode().equalsIgnoreCase(partCode)) {
+                toRemove = p;
+                break;
+            }
+        }
+        if (toRemove == null) {
+            throw new IllegalArgumentException("Part not found.");
+        }
+        parts.remove(toRemove);
+    }
