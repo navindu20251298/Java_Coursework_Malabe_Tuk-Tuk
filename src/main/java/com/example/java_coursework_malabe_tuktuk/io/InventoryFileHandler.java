@@ -5,3 +5,25 @@ import java.util.List;
 public class InventoryFileHandler {
 
     private InventoryFileParser parser = new InventoryFileParser();
+
+    public List<Part> loadInventory(String filePath) {
+        List<Part> parts = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.trim().isEmpty()) continue;
+
+                try {
+                    Part part = parser.parseLine(line);
+                    parts.add(part);
+                } catch (Exception e) {
+                    System.out.println("Skipping bad line: " + line);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Could not read inventory file: " + e.getMessage());
+        }
+
+        return parts;
+    }
